@@ -2,9 +2,9 @@ package com.viettel.citizensapi.controller;
 
 import java.util.List;
 
-import com.viettel.citizensapi.model.SOSMember;
+import com.viettel.citizensapi.model.Quan;
 import com.viettel.citizensapi.model.WarningInfo;
-import com.viettel.citizensapi.repository.SOSMemberRepository;
+import com.viettel.citizensapi.repository.QuanRepository;
 import com.viettel.citizensapi.repository.WarningInfoRepository;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,37 +22,36 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class MainController {
 
-    private SOSMemberRepository sosMemberRepository;
+    private QuanRepository quanRepository;
     private WarningInfoRepository warningInfoRepository;
 
-    public MainController(SOSMemberRepository sosMemberRepository, WarningInfoRepository warningInfoRepository) {
-        this.sosMemberRepository = sosMemberRepository;
+    public MainController(QuanRepository quanRepository, WarningInfoRepository warningInfoRepository) {
+        this.quanRepository = quanRepository;
         this.warningInfoRepository = warningInfoRepository;
     }
 
-    //SOSMember
-    @GetMapping("/sosmembers")
-    public List<SOSMember> getAllSOSMembers() {
-        return sosMemberRepository.findAll();
+    //Quan
+    @GetMapping("/quan")
+    public List<Quan> getAllQuan() {
+        return quanRepository.findAll();
     }
 
-    @PostMapping("/sosmember")
-    public void insertSOSMember(@RequestBody SOSMember sosMember){
-        this.sosMemberRepository.insert(sosMember);
+    @PostMapping("/quan")
+    public void insertQuan(@RequestBody Quan quan){
+        this.quanRepository.insert(quan);
     }
 
-    @PutMapping("/sosmember")
-    public void updateSOSMember(@RequestBody SOSMember sosMember){
-        this.sosMemberRepository.save(sosMember);
+    @PutMapping("/quan")
+    public void updateQuan(@RequestBody Quan quan){
+        this.quanRepository.save(quan);
     }
 
-    @DeleteMapping("/sosmember/{id}")
-    public void deleteSOSMember(@PathVariable("id") String id){
-        this.sosMemberRepository.deleteById(id);
+    @DeleteMapping("/quan/{id}")
+    public void deleteQuan(@PathVariable("id") String id){
+        this.quanRepository.deleteById(id);
     }
 
     //WarningInfo
-    //SOSMember
     @GetMapping("/warninginfo")
     public List<WarningInfo> getAllWarningInfo() {
         return warningInfoRepository.findAll();

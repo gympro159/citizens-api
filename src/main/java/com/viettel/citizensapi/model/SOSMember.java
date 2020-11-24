@@ -1,24 +1,20 @@
 package com.viettel.citizensapi.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "SOSMember")
 public class SOSMember {
     @Id
     public String idSOSMember;
     public String nameSOSMember;
     public String phoneSOSMember;
-    public Phuong phuong;
 
     public SOSMember() {
     }
 
-    public SOSMember(String idSOSMember, String nameSOSMember, String phoneSOSMember, Phuong phuong) {
+    public SOSMember(String idSOSMember, String nameSOSMember, String phoneSOSMember) {
         this.idSOSMember = idSOSMember;
         this.nameSOSMember = nameSOSMember;
         this.phoneSOSMember = phoneSOSMember;
-        this.phuong = phuong;
     }
 
     public String getIdSOSMember() {
@@ -43,14 +39,6 @@ public class SOSMember {
 
     public void setPhoneSOSMember(String phoneSOSMember) {
         this.phoneSOSMember = phoneSOSMember;
-    }
-
-    public Phuong getPhuong() {
-        return phuong;
-    }
-
-    public void setPhuong(Phuong phuong) {
-        this.phuong = phuong;
     }
 
 }

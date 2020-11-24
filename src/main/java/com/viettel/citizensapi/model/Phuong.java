@@ -1,20 +1,22 @@
 package com.viettel.citizensapi.model;
 
+import java.util.ArrayList;
+
 import org.springframework.data.annotation.Id;
 
 public class Phuong {
     @Id
     public String idPhuong;
     public String tenPhuong;
-    public Quan quan;
+    public ArrayList<SOSMember> sosMember;
 
     public Phuong() {
     }
 
-    public Phuong(String idPhuong, String tenPhuong, Quan quan) {
+    public Phuong(String idPhuong, String tenPhuong, ArrayList<SOSMember> sosMember) {
         this.idPhuong = idPhuong;
         this.tenPhuong = tenPhuong;
-        this.quan = quan;
+        this.sosMember = sosMember;
     }
 
     public String getIdPhuong() {
@@ -33,12 +35,12 @@ public class Phuong {
         this.tenPhuong = tenPhuong;
     }
 
-    public Quan getQuan() {
-        return quan;
+    public ArrayList<SOSMember> getSOSMember() {
+        return sosMember;
     }
 
-    public void setQuan(Quan quan) {
-        this.quan = quan;
+    public void setSOSMember(ArrayList<SOSMember> sosMember) {
+        this.sosMember = sosMember;
     }
 
 }
