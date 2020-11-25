@@ -3,8 +3,10 @@ package com.viettel.citizensapi.controller;
 import java.util.List;
 
 import com.viettel.citizensapi.model.Quan;
+import com.viettel.citizensapi.model.Type;
 import com.viettel.citizensapi.model.WarningInfo;
 import com.viettel.citizensapi.repository.QuanRepository;
+import com.viettel.citizensapi.repository.TypeRepository;
 import com.viettel.citizensapi.repository.WarningInfoRepository;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,10 +26,12 @@ public class MainController {
 
     private QuanRepository quanRepository;
     private WarningInfoRepository warningInfoRepository;
+    private TypeRepository typeRepository;
 
-    public MainController(QuanRepository quanRepository, WarningInfoRepository warningInfoRepository) {
+    public MainController(QuanRepository quanRepository, WarningInfoRepository warningInfoRepository, TypeRepository typeRepository) {
         this.quanRepository = quanRepository;
         this.warningInfoRepository = warningInfoRepository;
+        this.typeRepository = typeRepository;
     }
 
     //Quan
@@ -75,5 +79,11 @@ public class MainController {
     @DeleteMapping("/warninginfo/{id}")
     public void deleteWarningInfo(@PathVariable("id") String id){
         this.warningInfoRepository.deleteById(id);
+    }
+
+    //Type
+    @GetMapping("/type")
+    public List<Type> getAllTypes() {
+        return typeRepository.findAll();
     }
 }

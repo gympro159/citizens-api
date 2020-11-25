@@ -11,6 +11,7 @@ import com.viettel.citizensapi.model.SOSMember;
 import com.viettel.citizensapi.model.Type;
 import com.viettel.citizensapi.model.WarningInfo;
 import com.viettel.citizensapi.repository.QuanRepository;
+import com.viettel.citizensapi.repository.TypeRepository;
 import com.viettel.citizensapi.repository.WarningInfoRepository;
 
 import org.springframework.boot.CommandLineRunner;
@@ -18,13 +19,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-@EnableMongoRepositories(basePackageClasses = { QuanRepository.class, WarningInfoRepository.class })
+@EnableMongoRepositories(basePackageClasses = { QuanRepository.class, WarningInfoRepository.class,
+                TypeRepository.class })
 @Configuration
 public class DataConfig {
 
         @Bean
-        CommandLineRunner commandLineRunner(QuanRepository quanRepository,
-                        WarningInfoRepository warningInfoRepository) {
+        CommandLineRunner commandLineRunner(QuanRepository quanRepository, WarningInfoRepository warningInfoRepository,
+                        TypeRepository typeRepository) {
                 return string -> {
                         // quans
 
@@ -108,65 +110,75 @@ public class DataConfig {
 
                         // WarningInfo
                         warningInfoRepository.save(new WarningInfo("1", "Thông báo kẹt xe", "23/11/2020 13:02",
-                                        "Đoạn đường Điện Biên Phủ bị kẹt xe. Đề nghị người dân đi đường khác",
+                                        "Một vụ tai nạn giao thông dẫn đến đoạn đường Điện Biên Phủ gần tượng Mẹ Nhu bị kẹt xe. Đề nghị người dân đi đường khác, người dân nên đi đoạn đường khác để tránh ảnh hướng đến việc đi lại.",
                                         "https://docs.google.com/document/d/1Oh1XfWKi4XTLN_PsonBNOunjr1UX_EdrYlR_kkRSo_g/edit?usp=sharing",
-                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Nghiêm trọng"),
-                                        new Depart("1", "Ban chỉ huy ATGT")));
-                        warningInfoRepository.save(new WarningInfo("2", "Thông báo kẹt xe", "22/11/2020 13:02",
-                                        "Đoạn đường Điện Biên Phủ bị kẹt xe. Đề nghị người dân đi đường khác",
+                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Quan trọng"),
+                                        new Depart("1", "Ban chỉ huy PCTT")));
+                        warningInfoRepository.save(new WarningInfo("2", "Một vụ tai nạn giao thông dẫn đến đoạn đường Điện Biên Phủ gần tượng Mẹ Nhu bị kẹt xe.", "22/11/2020 13:02",
+                                        "Một vụ tai nạn giao thông dẫn đến đoạn đường Điện Biên Phủ gần tượng Mẹ Nhu bị kẹt xe. Đề nghị người dân đi đường khác, người dân nên đi đoạn đường khác để tránh ảnh hướng đến việc đi lại.",
                                         "https://docs.google.com/document/d/1Oh1XfWKi4XTLN_PsonBNOunjr1UX_EdrYlR_kkRSo_g/edit?usp=sharing",
-                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Nghiêm trọng"),
-                                        new Depart("1", "Ban chỉ huy ATGT")));
+                                        new Type("2", "Giao thông"), new Rate("1", "Quan trọng"),
+                                        new Depart("2", "Ban chỉ huy ATGT")));
                         warningInfoRepository.save(new WarningInfo("3", "Thông báo kẹt xe", "21/11/2020 13:02",
                                         "Đoạn đường Điện Biên Phủ bị kẹt xe. Đề nghị người dân đi đường khác",
                                         "https://docs.google.com/document/d/1Oh1XfWKi4XTLN_PsonBNOunjr1UX_EdrYlR_kkRSo_g/edit?usp=sharing",
-                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Nghiêm trọng"),
-                                        new Depart("1", "Ban chỉ huy ATGT")));
+                                        new Type("3", "Tội phạm, lừa đảo"), new Rate("2", "Nặng"),
+                                        new Depart("3", "Ban chỉ huy PCTP")));
                         warningInfoRepository.save(new WarningInfo("4", "Thông báo kẹt xe", "20/11/2020 13:02",
                                         "Đoạn đường Điện Biên Phủ bị kẹt xe. Đề nghị người dân đi đường khác",
                                         "https://docs.google.com/document/d/1Oh1XfWKi4XTLN_PsonBNOunjr1UX_EdrYlR_kkRSo_g/edit?usp=sharing",
-                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Nghiêm trọng"),
-                                        new Depart("1", "Ban chỉ huy ATGT")));
+                                        new Type("4", "Thông tin sai lệch"), new Rate("3", "Vừa"),
+                                        new Depart("4", "Ban chỉ huy ATTT")));
                         warningInfoRepository.save(new WarningInfo("5", "Thông báo kẹt xe", "19/11/2020 13:02",
                                         "Đoạn đường Điện Biên Phủ bị kẹt xe. Đề nghị người dân đi đường khác",
                                         "https://docs.google.com/document/d/1Oh1XfWKi4XTLN_PsonBNOunjr1UX_EdrYlR_kkRSo_g/edit?usp=sharing",
-                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Nghiêm trọng"),
-                                        new Depart("1", "Ban chỉ huy ATGT")));
+                                        new Type("6", "Thông tin điện lực"), new Rate("4", "Nhẹ"),
+                                        new Depart("6", "Sở điện lực Việt Nam")));
                         warningInfoRepository.save(new WarningInfo("6", "Thông báo kẹt xe", "18/11/2020 13:02",
                                         "Đoạn đường Điện Biên Phủ bị kẹt xe. Đề nghị người dân đi đường khác",
                                         "https://docs.google.com/document/d/1Oh1XfWKi4XTLN_PsonBNOunjr1UX_EdrYlR_kkRSo_g/edit?usp=sharing",
-                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Nghiêm trọng"),
-                                        new Depart("1", "Ban chỉ huy ATGT")));
+                                        new Type("7", "Dịch bệnh"), new Rate("1", "Quan trọng"),
+                                        new Depart("7", "Bộ Y tế")));
                         warningInfoRepository.save(new WarningInfo("7", "Thông báo kẹt xe", "17/11/2020 13:02",
                                         "Đoạn đường Điện Biên Phủ bị kẹt xe. Đề nghị người dân đi đường khác",
                                         "https://docs.google.com/document/d/1Oh1XfWKi4XTLN_PsonBNOunjr1UX_EdrYlR_kkRSo_g/edit?usp=sharing",
-                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Nghiêm trọng"),
-                                        new Depart("1", "Ban chỉ huy ATGT")));
+                                        new Type("8", "Khác"), new Rate("1", "Quan trọng"),
+                                        new Depart("8", "Thông tin Nhà nước")));
                         warningInfoRepository.save(new WarningInfo("8", "Thông báo kẹt xe", "16/11/2020 13:02",
                                         "Đoạn đường Điện Biên Phủ bị kẹt xe. Đề nghị người dân đi đường khác",
                                         "https://docs.google.com/document/d/1Oh1XfWKi4XTLN_PsonBNOunjr1UX_EdrYlR_kkRSo_g/edit?usp=sharing",
-                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Nghiêm trọng"),
-                                        new Depart("1", "Ban chỉ huy ATGT")));
+                                        new Type("5", "Hành giả, hàng kém chất lượng"), new Rate("1", "Quan trọng"),
+                                        new Depart("5", "Cục Quản lý thị trường")));
                         warningInfoRepository.save(new WarningInfo("9", "Thông báo kẹt xe", "15/11/2020 13:02",
                                         "Đoạn đường Điện Biên Phủ bị kẹt xe. Đề nghị người dân đi đường khác",
                                         "https://docs.google.com/document/d/1Oh1XfWKi4XTLN_PsonBNOunjr1UX_EdrYlR_kkRSo_g/edit?usp=sharing",
-                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Nghiêm trọng"),
-                                        new Depart("1", "Ban chỉ huy ATGT")));
+                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Quan trọng"),
+                                        new Depart("1", "Ban chỉ huy PCTT")));
                         warningInfoRepository.save(new WarningInfo("10", "Thông báo kẹt xe", "14/11/2020 13:02",
                                         "Đoạn đường Điện Biên Phủ bị kẹt xe. Đề nghị người dân đi đường khác",
                                         "https://docs.google.com/document/d/1Oh1XfWKi4XTLN_PsonBNOunjr1UX_EdrYlR_kkRSo_g/edit?usp=sharing",
-                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Nghiêm trọng"),
-                                        new Depart("1", "Ban chỉ huy ATGT")));
+                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Quan trọng"),
+                                        new Depart("1", "Ban chỉ huy PCTT")));
                         warningInfoRepository.save(new WarningInfo("11", "Thông báo kẹt xe", "13/11/2020 13:02",
                                         "Đoạn đường Điện Biên Phủ bị kẹt xe. Đề nghị người dân đi đường khác",
                                         "https://docs.google.com/document/d/1Oh1XfWKi4XTLN_PsonBNOunjr1UX_EdrYlR_kkRSo_g/edit?usp=sharing",
-                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Nghiêm trọng"),
-                                        new Depart("1", "Ban chỉ huy ATGT")));
+                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Quan trọng"),
+                                        new Depart("1", "Ban chỉ huy PCTT")));
                         warningInfoRepository.save(new WarningInfo("12", "Thông báo kẹt xe", "12/11/2020 13:02",
                                         "Đoạn đường Điện Biên Phủ bị kẹt xe. Đề nghị người dân đi đường khác",
                                         "https://docs.google.com/document/d/1Oh1XfWKi4XTLN_PsonBNOunjr1UX_EdrYlR_kkRSo_g/edit?usp=sharing",
-                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Nghiêm trọng"),
-                                        new Depart("1", "Ban chỉ huy ATGT")));
+                                        new Type("1", "Thời tiết, thiên tai"), new Rate("1", "Quan trọng"),
+                                        new Depart("1", "Ban chỉ huy PCTT")));
+
+                        // Type
+                        typeRepository.save(new Type("1", "Thời tiết, thiên tai"));
+                        typeRepository.save(new Type("2", "Giao thông"));
+                        typeRepository.save(new Type("3", "Tội phạm, lừa đảo"));
+                        typeRepository.save(new Type("4", "Thông tin sai lệch"));
+                        typeRepository.save(new Type("5", "Cục Quản lý thị trường"));
+                        typeRepository.save(new Type("6", "Thông tin điện lực"));
+                        typeRepository.save(new Type("7", "Dịch bệnh"));
+                        typeRepository.save(new Type("8", "Khác"));
                 };
         }
 }
