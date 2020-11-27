@@ -11,6 +11,7 @@ public class WarningInfo {
     public String time;
     public String content;
     public String attach;
+    public Boolean seen;
     public Type type;
     public Rate rate;
     public Depart depart;
@@ -18,13 +19,14 @@ public class WarningInfo {
     public WarningInfo() {
     }
 
-    public WarningInfo(String idWarningInfo, String title, String time, String content, String attach, Type type,
-            Rate rate, Depart depart) {
+    public WarningInfo(String idWarningInfo, String title, String time, String content, String attach, Boolean seen,
+            Type type, Rate rate, Depart depart) {
         this.idWarningInfo = idWarningInfo;
         this.title = title;
         this.time = time;
         this.content = content;
         this.attach = attach;
+        this.seen = seen;
         this.type = type;
         this.rate = rate;
         this.depart = depart;
@@ -70,6 +72,14 @@ public class WarningInfo {
         this.attach = attach;
     }
 
+    public Boolean getSeen() {
+        return seen;
+    }
+
+    public void setSeen(Boolean seen) {
+        this.seen = seen;
+    }
+
     public Type getType() {
         return type;
     }
@@ -93,7 +103,5 @@ public class WarningInfo {
     public void setDepart(Depart depart) {
         this.depart = depart;
     }
-
-    
 
 }
